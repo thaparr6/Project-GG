@@ -9,16 +9,23 @@ def main():
     client.connect(mqttBroker,1883)      
     #This will open camera and check if there is motion
     subprocess.run('start microsoft.windows.camera:', shell=True)
-    time.sleep(300)
-    while True:
-        #Will keep checking for motion
+    i = False
+    count = 0
+    while i == False:
+        time.sleep(1)
+        count = count + 1
+        #Check for Motion
+        
+        #Send message it there is motion or not
+        if i == True:
+            print("The Process will not continue")
+        elif count == 300:
+            print("Process wil continue")
+            break
         
     subprocess.run('Taskkill /IM WindowsCamera.exe /F', shell=True)
-    #Send message it there is motion or not
-    if i == True:
-        print("The Process will not continue")
-    else:
-        print("Process wil continue")
+
+    
     
 
 if __name__ == "__main__":
