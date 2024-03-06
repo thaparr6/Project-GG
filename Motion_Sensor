@@ -24,6 +24,8 @@ def main():
             break
         
     subprocess.run('Taskkill /IM WindowsCamera.exe /F', shell=True)
+    client.publish("Motion",i)
+    
 
     
     
