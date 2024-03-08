@@ -1,1 +1,25 @@
+import paho.mqtt.client as mqtt
+import time
 
+def main():
+    mqttBroker = "broker.hivemq.com"
+    client = mqtt.Client()
+    client.connect(mqttBroker,1883)
+    
+    chemicalp = 0   #chemical percentage in the air at start
+    window = False  #window is closed
+    while chemicalp != 40:
+        chemicalp += 1 
+    #each time the loop runs chemical percentage goes up by one
+        if chemicalp == 40:   
+            time.sleep(3600)   #sleep for an hour
+            window = True   #window opened
+            while window == True:
+                chemicalp -= 1
+#each time loop runs chemical % goes down by one
+                if chemicalp < 5:
+                    window = False  
+#once chemical% reaches 5% window closed
+
+if __name__ == "__main__":
+    main()
