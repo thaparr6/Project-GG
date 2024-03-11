@@ -4,6 +4,16 @@ import subprocess,os
 import cv2, time, pandas
 import datetime
 
+#To capture the first frame and differences 
+static_back = None
+motion_list = [ None, None ]
+#For when movement happens
+time = []
+
+df = pandas.DataFrame(columns = ["Start", "End"])
+video = cv2.VideoCapture(0)
+
+
 def main():
     mqttBroker = "broker.hivemq.com"
     client = mqtt.Client("##") 
