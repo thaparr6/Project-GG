@@ -4,12 +4,7 @@ import subprocess,os
 import cv2, time, pandas
 import datetime
 
-static_back = None
-time = []
-df = pandas.DataFrame(columns = ["Start", "End"])
-video = cv2.VideoCapture(0)
-i = False
-count = 0
+
 
 def main():
     static_back = None
@@ -19,7 +14,7 @@ def main():
     i = False
     count = 0
     mqttBroker = "broker.hivemq.com"
-    client = mqtt.Client("##") 
+    client = mqtt.Client("Sanitizing system") 
     client.connect(mqttBroker,1883)      
     while True:
         #Check for Motion
