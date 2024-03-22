@@ -3,7 +3,7 @@ import time
 
 def main():
     mqttBroker = "broker.hivemq.com"
-    client = mqtt.Client()
+    client = mqtt.Client("Ventilation system")
     client.connect(mqttBroker,1883)
     
     chemicalp = 0   #chemical percentage in the air at start
@@ -20,6 +20,13 @@ def main():
                 if chemicalp < 5:
                     window = False  
 #once chemical% reaches 5% window closed
+
+def publish(client):
+    client = mqtt.Client("Ventilation system")
+    client.on_publish = on_publish
+    client.connect(mqttBroker, 1883)
+    cp = client.publish("window", "open")
+
 
 if __name__ == "__main__":
     main()
