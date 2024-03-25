@@ -13,15 +13,7 @@ def main():
     mqttBroker = "broker.hivemq.com"
     client = mqtt.Client("Sanitizing System") 
     client.connect(mqttBroker,1883)      
-
-    #Send message it there is motion or not
-    if i == True:
-        print("The Process will not continue")
-    elif count == 300:
-        print("Process wil continue")
-    client.publish("Motion",i)
-
-while True:
+    while True:
         count = count + 1
         check, frame = video.read() 
 
@@ -64,7 +56,14 @@ while True:
                         time.append(datetime,now())
                 break    
 video.release() 
-cv2.destroyAllWindows()    
+cv2.destroyAllWindows()
+    #Send message it there is motion or not
+    if i == True:
+        print("The Process will not continue")
+    elif count == 300:
+        print("Process wil continue")
+    client.publish("Motion",i)
+    
 
 if __name__ == "__main__":
     main()
