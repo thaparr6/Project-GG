@@ -11,7 +11,6 @@ def on_connect(client,userdata,flags,rc):
 def main():
     mqttBroker = "broker.hivemq.com"
     client = mqtt.Client("python3")
-    #client.on_publish = on_publish
     client.on_connect = on_connect
     
     static_back = None
