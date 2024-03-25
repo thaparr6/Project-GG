@@ -22,18 +22,13 @@ def main():
      while True:
           response = requests.get(forecast_url)
           data = response.json()
-          if ‘weather’ in data and len(data[‘weather’]) > 0 and ‘description’ in data[‘weather’] [0] and ‘rain’ not in data [‘weather’] [0] [‘description’].lower():
-               if ‘rain’ not in data or ‘3h’ not in data [‘rain’] or float(data[‘rain’] [‘3h’]) == 0:
-                    #if the forecast predicts no rain for the next three hours, spray now
-                    print("Start spraying!")
-               else:
-                    #if the forecast predicts rain within the next three hours, reschedule by 5 hours
-                    next_spray_time = time.time() + (3600 * 5)
-                    print(“Rescheduling spraying for later”)
-          else:
-               #if the forecast predicts rain, reschedule by 5 hours
-               next_spray_time = time.time() + (3600 * 5)
-               print("Rescheduling spraying for later")
+          if ‘precipitation’ > 1: 
+          # if there is going to be more than 1 millimetre of rain in the next three hours, the cleaning will be rescheduled   
+          next_spray_time = time.time() + (3600 * 5) # next spray scheduled in 5 hours time
+          print("Rescheduling spraying for later")
+     else:
+          print(“Start  spraying “)
+          
      
           time.sleep(3600 * 5) 
      
