@@ -21,12 +21,6 @@ def main():
                     window = False  
 #once chemical% reaches 5% window closed
 
-def publish(client):
-    client = mqtt.Client("Ventilation system")
-    client.on_publish = on_publish
-    client.connect(mqttBroker, 1883)
-    cp = client.publish("window", "open")
-
 
 if __name__ == "__main__":
     main()
