@@ -2,15 +2,24 @@ import paho.mqtt.client as mqtt
 import cv2, time, pandas 
 from datetime import datetime
 
+#These value will be used in the loop to keep track of thvideo and time
+
+def on_connect(client,userdata,flags,rc):
+    client.connected_flag = True
+    client.connect(mqttBroker,1883)
+
 def main():
     mqttBroker = "broker.hivemq.com"
-    client = mqtt.Client("Sanitizing System") 
-    client.connect(mqttBroker,1883) 
-    #These value will be used in the loop to keep track of thvideo and time
+    client = mqtt.Client("python3")
+    #client.on_publish = on_publish
+    client.on_connect = on_connect
+    
     static_back = None
     time = []
     video = cv2.VideoCapture(0)
     count = 0
+    i = False
+    
     while True:
         count = count + 1
         check, frame = video.read() 
@@ -64,8 +73,11 @@ def main():
     client.publish("Motion",i)
     
 
-if __name__ == "__main__":
-    main()
+
+
+    
+main()
+
 
 
 
