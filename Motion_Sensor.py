@@ -12,7 +12,13 @@ count = 0
 def main():
     mqttBroker = "broker.hivemq.com"
     client = mqtt.Client("Sanitizing System") 
-    client.connect(mqttBroker,1883)      
+    client.connect(mqttBroker,1883) 
+    #These value will be used in the loop to keep track of thvideo and time
+    static_back = None
+    time = []
+    video = cv2.VideoCapture(0)
+    i = False
+    count = 0
     while True:
         count = count + 1
         check, frame = video.read() 
@@ -55,8 +61,8 @@ def main():
                 if motion == 1:
                         time.append(datetime,now())
                 break    
-video.release() 
-cv2.destroyAllWindows()
+    video.release() 
+    cv2.destroyAllWindows()
     #Send message it there is motion or not
     if i == True:
         print("The Process will not continue")
