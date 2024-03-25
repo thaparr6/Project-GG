@@ -2,13 +2,6 @@ import paho.mqtt.client as mqtt
 import cv2, time, pandas 
 from datetime import datetime
 
-#These value will be used in the loop to keep track of thvideo and time
-static_back = None
-time = []
-video = cv2.VideoCapture(0)
-i = False
-count = 0
-
 def main():
     mqttBroker = "broker.hivemq.com"
     client = mqtt.Client("Sanitizing System") 
@@ -17,7 +10,6 @@ def main():
     static_back = None
     time = []
     video = cv2.VideoCapture(0)
-    i = False
     count = 0
     while True:
         count = count + 1
@@ -68,6 +60,7 @@ def main():
         print("The Process will not continue")
     elif count == 300:
         print("Process wil continue")
+        i = False
     client.publish("Motion",i)
     
 
