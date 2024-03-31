@@ -27,6 +27,6 @@ while True:
         client.publish("cleaning/trigger", 1) #the conditions indicate no rain in the next three hours, so a 1 is published
     else:
         client.publish("cleaning/trigger", 0) #the conditions indicating it is or will rain have been set off, so a 0 is published
-    time.sleep(3600 * 3)
+        time.sleep(3600 * 3) #checks again in three hours time
 
 client.loop_forever() #keeps running the loop until the program ends
