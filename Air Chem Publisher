@@ -1,7 +1,23 @@
-def publish(client):
+import paho.mqtt.client as mqtt
+import time
+
+def main():
+    mqttBroker = "broker.hivemq.com"
     client = mqtt.Client("Ventilation system")
-    client.on_publish = on_publish
-    client.connect(mqttBroker, 1883)
-    cp = client.publish("window", "open")
+    client.connect(mqttBroker,1883)
+
+    acc = 100
+    while True:
+      client.publish("Air Chemical Concentration", acc)
+      print("The Air Chemical Concentration level is " + str(acc) + "% now")
+      acc -= 2
+      time.sleep(60)
+      if acc == 30:
+        client.publish("Air Chemical Concentration", acc)
+        print("The Air Chemical Concentration level is " + str(acc) + "% now")
+        break
+
+if __name__ == "__main__":
+    main()
 
 
