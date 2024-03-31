@@ -17,7 +17,6 @@ def get_weather_forecast():
     url = f"http://api.openweathermap.org/data/2.5/forecast?lat=52.41&lon=-1.51&appid={API_key}" #the coordinates for Coventry are (52.41, -1.51) and these are required for the API call
     response = requests.get(url)
     data = response.json()
-    precipitation = 0 #initialise the variable
     for forecast in data["list"]: #the rain category is listed under the 'list' variable in the API response
         if 'rain' not in data or '3h' not in data['rain'] or float(data['rain']['3h']) == 0:
             return True
