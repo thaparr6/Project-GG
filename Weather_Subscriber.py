@@ -24,7 +24,7 @@ def on_connect(client, userdata, flags, rc):
     else:
         print(f'Failed to connect with result code {rc}')
 
-def on_message(client, userdata, message):
+def on_message(client, userdata, message):'weather'
     global MESSAGE
     if message.topic == MQTT_TOPIC:
         data = json.loads(message.payload)
@@ -42,7 +42,7 @@ def main():
     client.on_connect = on_connect
     client.on_message = on_message
     client.tls_set(ca_certs=None, certfile=None, keyfile=None, tls_version=ssl.PROTOCOL_TLS)
-    client.connect(MQTT_BROKER, MQTT_PORT)
+    client.connect(broker.hivemq.com, 1883)
     client.loop_forever()
 
 if __name__ == '__main__':
