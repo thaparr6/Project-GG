@@ -20,7 +20,7 @@ MESSAGE = f'Weather in {3333139}:\n'
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
         print(f'Connected to {broker.hivemq.com} with result code {rc}')
-        client.subscribe(MQTT_TOPIC)
+        client.subscribe(weather_system)
     else:
         print(f'Failed to connect with result code {rc}')
 
