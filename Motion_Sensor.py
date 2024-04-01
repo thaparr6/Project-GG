@@ -2,8 +2,6 @@ import paho.mqtt.client as mqtt
 import cv2, time, pandas 
 from datetime import datetime
 
-#These value will be used in the loop to keep track of thvideo and time
-
 def on_connect(client,userdata,flags,rc):
     client.connected_flag = True
     client.connect(mqttBroker,1883)
