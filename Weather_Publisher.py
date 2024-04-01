@@ -3,7 +3,7 @@ import requests
 import json
 
 #The API key was generated from the OpenWeatherMap website
-API_key = "19b21c8ed496b716ea542ad051cfb170"
+API_key = "2837c7dc12f0d19128fc0758d1f52efd"
 mqttBroker = "broker.hivemq.com"
 client = mqtt.Client("Weather System") #MQTT client initialisation
 
