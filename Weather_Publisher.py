@@ -10,20 +10,20 @@ client = mqtt.Client("Weather System") #MQTT client initialisation
 
 def on_connect(client, userdata, flags, rc):
     client.connect(mqttBroker, 1883)
-    client.connected_flag = True
+    client.connected_flag = True #ensures connection
     print("Connected with weather system")
 
 def main():
     url = f"http://api.openweathermap.org/data/2.5/forecast?lat=52.41&lon=-1.51&cnt=1&appid={API_key}" #the coordinates for Coventry are (52.41, -1.51) and cnt is used to limit the number of results returned
     response = requests.get(url)
     data = response.json()
-    if "list" not in data or "rain" not in data["list"][0]:
+    if "list" not in data or "rain" not in data["list"][0]: #checks whether the keyword 'rain' isn't present, indicating there is no rain forecast for the next three hours
         return 1
 
     if float(data["list"][0]["rain"]["3h"]) == 0:
         return 1
         
-    return 0
+    return 0 #if the 'rain' keyword is present in the API response, or its value is greater than 0, this means it will rain and a 0 is returned
 
 client.on_connect = on_connect
 
