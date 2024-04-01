@@ -5,8 +5,8 @@ import json
 import paho.mqtt.client as mqtt
 
 # Set the OpenWeather API key and city ID as environment variables
-OPENWEATHER_API_KEY = os.environ.get('OPENWEATHER_API_KEY')
-OPENWEATHER_CITY_ID = os.environ.get('OPENWEATHER_CITY_ID', '4236955')
+OPENWEATHER_API_KEY = os.environ.get('2837c7dc12f0d19128fc0758d1f52efd')
+OPENWEATHER_CITY_ID = os.environ.get('3333139')
 
 # Set the MQTT broker and topic
 MQTT_BROKER = 'broker.hivemq.com'
@@ -15,7 +15,7 @@ MQTT_TOPIC = 'weather'
 
 # Set the MQTT client ID and message
 CLIENT_ID = f'openweather_{random.randint(0, 1000)}'
-MESSAGE = f'Weather in {OPENWEATHER_CITY_ID}:\n'
+MESSAGE = f'Weather in {3333139}:\n'
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
