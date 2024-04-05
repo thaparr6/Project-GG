@@ -4,19 +4,18 @@ import paho.mqtt.client as mqtt
 
 # MOTT client callback functions
 def on_connect(client, userdata, flags, rc) :
-print ("Connected with result code "+str(rc))
+    print ("Connected with result code "+str(rc))
 
 # MQTT client initialization
 client = mqtt. Client ()
-client. on_connect = on_connect
+client.on_connect = on_connect
 
 # Connect to HivelO broker
-client, connect("matt.hivemq.com", 1883, 60)
+client.connect("broker.hivemq.com", 1883, 60)
 
 # Main loop
-while True:
-temperature = random.uniform (10, 30)
+temperature = random.uniform(10, 30)
 message = f"Temperature: {temperature: .1f} C"
-client. publish ("temperature", message)
+client.publish("temperature", message)
 print (message)
-time. sleep (1)
+time.sleep(1)
